@@ -101,12 +101,12 @@ gulp.task('js-copy', () => {
 });
 
 gulp.task('js-minified', () => {
-  return gulp.src([ 
-    src_assets_folder + 'js/homework/*.js', 
+  return gulp.src([
+    src_assets_folder + 'js/homework/*.js',
     src_assets_folder + 'js/homework/components/*.js',
-    src_assets_folder + 'js/homework/vendor/*.js', 
-    src_assets_folder + 'js/homework/vendor/jquery/dist/*.js', 
-    src_assets_folder + 'js/homework/vendor/requirejs/*.js', 
+    src_assets_folder + 'js/homework/vendor/*.js',
+    src_assets_folder + 'js/homework/vendor/jquery/dist/*.js',
+    src_assets_folder + 'js/homework/vendor/requirejs/*.js',
   ], { since: gulp.lastRun('js-minified'), base: src_assets_folder + 'js/homework' })
     .pipe(uglify())
     .pipe(gulp.dest(dist_assets_folder + 'js/homework'))
@@ -114,7 +114,7 @@ gulp.task('js-minified', () => {
 });
 
 gulp.task('images', () => {
-  return gulp.src([ src_assets_folder + 'images/**/*.+(png|jpg|jpeg|gif|svg|ico)' ], { since: gulp.lastRun('images') })
+  return gulp.src([ src_assets_folder + 'images/**/*.+(png|jpg|jpeg|gif|svg|ico|webp)' ], { since: gulp.lastRun('images') })
     .pipe(plumber())
     .pipe(gulp.dest(dist_assets_folder + 'images'))
     .pipe(browserSync.stream());
@@ -185,17 +185,17 @@ gulp.task('generate-critical-css', (cb) => {
 });
 
 gulp.task(
-  'build', 
+  'build',
   gulp.series(
-    'clear', 
-    'html', /* replace the 'html' with 'html-minified' if you need minification */ 
-    'sass', 
-    'js', 
+    'clear',
+    'html', /* replace the 'html' with 'html-minified' if you need minification */
+    'sass',
+    'js',
     'js-copy', /* replace the 'js-copy' with 'js-minified' if you need minification */
-    'fonts', 
+    'fonts',
     'videos',
-    'extra-files', 
-    'images', 
+    'extra-files',
+    'images',
     /*'purgecss',*/
     /*'generate-critical-css',*/
     /*'generate-service-worker',*/
